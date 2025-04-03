@@ -1,0 +1,23 @@
+### health check
+
+GET http://localhost:8888/ping/testId?test=test
+
+### save car
+
+POST http://localhost:8888/api/cars 
+content-type: application/json
+
+{
+  "year": 2000,
+  "make": "Honda",
+  "model": "nsx",
+  "color": "red"
+}
+
+### list cars
+
+GET http://localhost:8888/api/cars
+
+### get car by specific carId
+
+GET http://localhost:8888/api/cars/4

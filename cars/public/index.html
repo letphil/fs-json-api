@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="mainContainer"></div>
+    <div>
+      <input id="year" />
+      <input id="make" />
+      <input id="model" />
+      <input id="color" />
+    </div>
+    <button id="addCar">add car</button>
+
+    <script>
+      window.onload = async function () {
+        const res = await fetch("/api/cars");
+        const toJson = await res.json();
+        mainContainer.innerHTML = `<pre>${JSON.stringify(
+          toJson,
+          null,
+          2
+        )}<pre>`;
+      };
+
+      addCar.onclick = async function () {
+        const add = await fetch("/api/cars", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            year: year.value,
+            make: make.value,
+            model: model.value,
+            color: color.value,
+          }),
+        });
+
+        const res = await fetch("/api/cars");
+        const toJson = await res.json();
+        mainContainer.innerHTML = `<pre>${JSON.stringify(
+          toJson,
+          null,
+          2
+        )}<pre>`;
+      };
+    </script>
+  </body>
+</html>
