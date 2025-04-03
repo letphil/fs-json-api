@@ -1,6 +1,6 @@
 ### health check
 
-GET http://localhost:8888/ping/testId?test=test
+GET http://localhost:8888/ping
 
 ### save car
 
@@ -8,10 +8,10 @@ POST http://localhost:8888/api/cars
 content-type: application/json
 
 {
-  "year": 2000,
-  "make": "Honda",
-  "model": "nsx",
-  "color": "red"
+  "year": 1989,
+  "make": "bmw",
+  "model": "3m",
+  "color": "beige"
 }
 
 ### list cars
@@ -20,4 +20,4 @@ GET http://localhost:8888/api/cars
 
 ### get car by specific carId
 
-GET http://localhost:8888/api/cars/4
+GET http://localhost:8888/api/cars/8

@@ -1,0 +1,17 @@
+{
+  "name": "cars2",
+  "version": "1.0.0",
+  "description": "node project to save favorite cars as json file using fs module and express to expose endpoints",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

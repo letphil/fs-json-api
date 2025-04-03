@@ -1,0 +1,28 @@
+### healthcheck
+
+GET http://localhost:8888/ping
+
+
+### test sending data
+
+GET http://localhost:8888/params-test
+
+### save car
+
+POST http://localhost:8888/api/cars
+Content-Type: application/json
+Authorization: ourSecret rabbit
+
+{
+  "year": 2024,
+  "make": "Ferrari",
+  "model": "f80",
+  "color": "red"
+}
+
+### list cars
+GET http://localhost:8888/api/cars
+
+### get car
+
+GET http://localhost:8888/api/cars/4

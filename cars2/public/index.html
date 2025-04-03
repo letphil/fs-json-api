@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="mainContainer"></div>
+    <div>
+      <input id="year" />
+      <input id="make" />
+      <input id="model" />
+      <input id="color" />
+      <button id="add">post</button>
+    </div>
+    <script>
+      window.onload = async function () {
+        const res = await (await fetch("/api/cars")).json();
+        res.cars.forEach((car) => {
+          mainContainer.innerHTML += `
+            <div>
+              <p>${car.year} ${car.color} ${car.make} ${car.model}</p>
+              <img height='50' width='50' src="${
+                car.imageUri ||
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrgqWj_7X3pWPOjXglmkwj8NN8w6DJKzw2Fg&s"
+              }" />
+            </div>
+          `;
+        });
+      };
+
+      add.onclick = async function () {
+        const res = await fetch("/api/cars", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            year: Number(year.value),
+            make: make.value,
+            model: model.value,
+            color: color.value,
+          }),
+        });
+
+        mainContainer.innerHTML = "";
+
+        const get = await (await fetch("/api/cars")).json();
+        get.cars.forEach((car) => {
+          mainContainer.innerHTML += `
+            <div>
+              <p>${car.year} ${car.color} ${car.make} ${car.model}</p>
+            </div>
+          `;
+        });
+      };
+    </script>
+  </body>
+</html>
